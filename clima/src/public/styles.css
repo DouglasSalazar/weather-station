@@ -1,0 +1,59 @@
+
+body {
+  padding-top: 54px;
+}
+
+h0{
+  font-size: 150px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+icon{
+  font-size: 150px;
+}
+
+@media (min-width: 992px) {
+  body {
+    padding-top: 56px;
+  }
+}
+
+.business-header {
+  height: 50vh;
+  min-height: 770px;
+  background: url('ceu_azul.jpg') center center no-repeat scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+.business-header1 {
+  height: 50vh;
+  min-height: 770px;
+  background: url('ceu_escuro.JPG') center center no-repeat scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+.business-header2 {
+  height: 50vh;
+  min-height: 770px;
+  background: url('ceu_nublado.jpg') center center no-repeat scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+.card{
+  height: 100%;
+  overflow-x: auto;
+}
+
+
+.modal-body{
+  overflow-x: auto;
+}
