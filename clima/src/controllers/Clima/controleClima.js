@@ -100,9 +100,9 @@ router.get('/consultaClima', async(req, res)=>{
         const historicoclima = await historicoClima.find({data: dataAux});
        
         const leituraclima = await leituraClima.find({}).sort({"_id":-1}).limit(1);
-        var hora= leituraclima[0].data.getHours().toString() + ':' + leituraclima[0].data.getMinutes().toString() + ':' +leituraclima[0].data.getSeconds().toString(); 
-      
-        return res.send({historicoclima,leituraclima,hora});
+        var hora= leituraclima[0].data.getHours() + ':' + leituraclima[0].data.getMinutes() + ':' +leituraclima[0].data.getSeconds(); 
+        var hora1=leituraclima[0].data.getHours().toString();
+        return res.send({historicoclima,leituraclima,hora,hora1});
         
     }catch (err){
         return res.status(400).send({error: 'Erro ao buscar Registro'})

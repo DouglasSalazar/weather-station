@@ -44,10 +44,8 @@
       </div>
     </nav>
 	<%if(dados.leituraclima[dados.leituraclima.length-1]["chuva"]>"80"){%>
-			<header class="business-header3">	
-	<%}else if(dados.leituraclima[dados.leituraclima.length-1]["chuva"]>"20"){%>
 		<header class="business-header2">
-	<%}else if(new Date ('1/1/1999 ' + dados.leituraclima[dados.leituraclima.length-1]["hora"]) > new Date ('1/1/1999 ' + "18:00:00") ){%>
+	<%}else if(dados.hora1 > "18" || "5" > dados.hora1){%>
 		<header class="business-header1">
 	<%}else{%>
 		<header class="business-header">
@@ -89,8 +87,13 @@
 				<%}else{%>
 					<h0  class="text-center text-white" ><i class="material-icons icon">brightness_5</i><%=dados.leituraclima[dados.leituraclima.length-1]["temperatura"]%>º</h0>
 				<%}%>
-				<h4 class="text-center text-white"> <%=dados.leituraclima[dados.leituraclima.length-1]["sensacao"]%></h4>
-				<p></p>
+				<%if(dados.leituraclima[dados.leituraclima.length-1]["sensacao"]=="Sensação: OK") { %>
+					<h5 class="text-center text-white"> Média entre temperatura e umidade</h5>
+				<%}else{%>
+					<h5 class="text-center text-white"> <%=dados.leituraclima[dados.leituraclima.length-1]["sensacao"]%></h5>
+					<%}%>
+
+					<p></p>
 				<p class="text-center text-white">Última leitura realizada: <%=dados.hora%></p>
 				<p></p>				
 				<div class="row">
@@ -107,16 +110,16 @@
 						<h5 class="text-center text-white"><%=dados.leituraclima[dados.leituraclima.length-1]["sensacaoTermica"]%>º</h5>
 		    	</div>
 		    	<div class="col">
-						<h6 class="text-center text-white">Altitude:</h6>
+						<h6 class="text-center text-white">Altitude:<ion-icon name="md-image"></ion-icon></h6>
 						<h5 class="text-center text-white"><%=dados.leituraclima[dados.leituraclima.length-1]["altitude"]%>m</h5>
 					</div>
 					<div class="col">
-						<h6 class="text-center text-white">Altitude em relação ao Mar:</h6>
+						<h6 class="text-center text-white">Altitude em relação ao mar:<ion-icon name="md-image"></ion-icon></h6>
 						<h5 class="text-center text-white"><%=dados.leituraclima[dados.leituraclima.length-1]["altitudeMar"]%>m</h5>
 					</div>
 					<div class="col">
 						<h6 class="text-center text-white">Pressão Atmosferica:<ion-icon name="timer"></ion-icon></h6>
-						<h5 class="text-center text-white"><%=dados.leituraclima[dados.leituraclima.length-1]["pressaoReal"]%>hPA</h5>
+						<h5 class="text-center text-white"><%=(dados.leituraclima[dados.leituraclima.length-1]["pressaoReal"]/100).toFixed(2)%>hPA</h5>
 		    	</div>
 
 	    	</div>	    

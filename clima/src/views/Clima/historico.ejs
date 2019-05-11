@@ -94,6 +94,7 @@
 												<th scope="col">Temperatura</th>
 												<th scope="col">Umidade</th>
 												<th scope="col">Umidade do Solo</th>
+												<th scope="col">Chuva</th>
 												<th scope="col">Pressão Real</th>
 												<th scope="col">Pressão</th>
 												<th scope="col">Sensação Térmica</th>
@@ -112,8 +113,9 @@
 															<td><%=dados.historicos[i]["temperatura"]%>º</td>
 															<td><%=dados.historicos[i]["umidade"]%>%</td>
 															<td><%=dados.historicos[i]["umidadeSolo"]%>%</td>
-															<td><%=dados.historicos[i]["pressaoReal"]%>hPA</td>
-															<td><%=dados.historicos[i]["pressao"]%>hPA</td>	
+															<td><%=dados.historicos[i]["chuva"]%>%</td>
+															<td><%=(dados.historicos[i]["pressaoReal"]/100).toFixed(2)%>hPA</td>
+															<td><%=(dados.historicos[i]["pressao"]/100).toFixed(2)%>hPA</td>	
 															<td><%=dados.historicos[i]["sensacaoTermica"]%>º</td>
 															<td><%=dados.historicos[i]["sensacao"]%></td>
 															<td><%=dados.historicos[i]["altitude"]%>m</td>
