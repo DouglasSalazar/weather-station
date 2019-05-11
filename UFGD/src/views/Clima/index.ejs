@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="pt">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		<link href="public/styles.css" type="text/css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+    <title>clima</title>
+
+  <!--DataTable CSS-->
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+
+	</head>
+  <body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="/Clima">UFGD Clima</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+						<li class="nav-item">
+							<a class="nav-link js-scroll-trigger" href="/Clima">Clima</a>
+						</li>		
+						<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="/historicoClima">Histórico de Leituras</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" data-toggle="modal" data-target="#myModal">Sobre</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+	<%if(dados.leituraclima[dados.leituraclima.length-1]["chuva"]>"80"){%>
+		<header class="business-header2">
+	<%}else if(dados.hora1 > "18" || "5" > dados.hora1){%>
+		<header class="business-header1">
+	<%}else{%>
+		<header class="business-header">
+	<%}%>
+
+	<div class="container">
+		<div class="row">
+	  	<div class="col-lg-12">
+					<p></p>
+	    	<h5 class="text-center text-white">Universidade Federal de Grande Dourados<i class="material-icons md-18">place</i></h5>
+	    	<div class="row">
+					<div class="col">
+		    		<h5 class="text-center text-white">Temperatura:<ion-icon name="thermometer"></ion-icon></h5>
+					</div>
+					<div class="col">		
+		    		<h5 class="text-center text-white">Umidade:<ion-icon name="water"></ion-icon></h5>
+					</div>	  
+	 			</div>
+	    	<div class="row justify-content-md-center">
+		    	<div class="col">
+						<h5 class="text-center text-white"><i class="material-icons">arrow_upward</i><%=dados.historicoclima[0]["temperaturaMax"]%>º</h5>
+          	<p class="text-center text-white"><%=dados.historicoclima[0]["temperaturaMaxHora"]%></p>
+					
+						<h5 class="text-center text-white"><i class="material-icons">arrow_downward</i><%=dados.historicoclima[0]["temperaturaMin"]%>º</h5>
+						<p class="text-center text-white"><%=dados.historicoclima[0]["temperaturaMinHora"]%></p>
+		    	</div>
+		  		<div class="col">
+						<h5 class="text-center text-white"><i class="material-icons">arrow_upward</i><%=dados.historicoclima[0]["umidadeMax"]%>%</h5>
+						<p class="text-center text-white"><%=dados.historicoclima[0]["umidadeMaxHora"]%></p>
+		   		
+						<h5 class="text-center text-white"><i class="material-icons">arrow_downward</i><%=dados.historicoclima[0]["umidadeMin"]%>%</h5>
+						<p class="text-center text-white"><%=dados.historicoclima[0]["umidadeMinHora"]%></p>
+		    	</div>
+				</div>
+				<%if(dados.leituraclima[dados.leituraclima.length-1]["chuva"]>"30"){%>
+					<h0  class="text-center text-white" ><ion-icon size="small" name="rainy"></ion-icon><%=dados.leituraclima[dados.leituraclima.length-1]["temperatura"]%>º</h0>
+				<%}else if(new Date ('1/1/1999 ' + dados.leituraclima[dados.leituraclima.length-1]["hora"]) > new Date ('1/1/1999 ' + "18:00:00") ){%>
+					<h0  class="text-center text-white" ><i class="material-icons">brightness_2</i><%=dados.leituraclima[dados.leituraclima.length-1]["temperatura"]%>º</h0>
+				<%}else{%>
+					<h0  class="text-center text-white" ><i class="material-icons icon">brightness_5</i><%=dados.leituraclima[dados.leituraclima.length-1]["temperatura"]%>º</h0>
+				<%}%>
+				<%if(dados.leituraclima[dados.leituraclima.length-1]["sensacao"]=="Sensação: OK") { %>
+					<h5 class="text-center text-white"> Média entre temperatura e umidade</h5>
+				<%}else{%>
+					<h5 class="text-center text-white"> <%=dados.leituraclima[dados.leituraclima.length-1]["sensacao"]%></h5>
+					<%}%>
+
+					<p></p>
+				<p class="text-center text-white">Última leitura realizada: <%=dados.hora%></p>
+				<p></p>				
+				<div class="row">
+			    <div class="col">
+						<h6 class="text-center text-white">Umidade do Ar:<ion-icon name="water"></h6>
+						<h5 class="text-center text-white"><%=dados.leituraclima[dados.leituraclima.length-1]["umidade"]%>%</h5>
+		    	</div>
+		    	<div class="col">
+						<h6 class="text-center text-white">Umidade do Solo:<ion-icon name="water"></h6>
+						<h5 class="text-center text-white"> <%=dados.leituraclima[dados.leituraclima.length-1]["umidadeSolo"]%>%</h5>
+		    	</div>
+		    	<div class="col">
+						<h6 class="text-center text-white">Sensação Térmica:<i class="material-icons">waves</i></h6>
+						<h5 class="text-center text-white"><%=dados.leituraclima[dados.leituraclima.length-1]["sensacaoTermica"]%>º</h5>
+		    	</div>
+		    	<div class="col">
+						<h6 class="text-center text-white">Altitude:<ion-icon name="md-image"></ion-icon></h6>
+						<h5 class="text-center text-white"><%=dados.leituraclima[dados.leituraclima.length-1]["altitude"]%>m</h5>
+					</div>
+					<div class="col">
+						<h6 class="text-center text-white">Altitude em relação ao mar:<ion-icon name="md-image"></ion-icon></h6>
+						<h5 class="text-center text-white"><%=dados.leituraclima[dados.leituraclima.length-1]["altitudeMar"]%>m</h5>
+					</div>
+					<div class="col">
+						<h6 class="text-center text-white">Pressão Atmosferica:<ion-icon name="timer"></ion-icon></h6>
+						<h5 class="text-center text-white"><%=(dados.leituraclima[dados.leituraclima.length-1]["pressaoReal"]/100).toFixed(2)%>hPA</h5>
+		    	</div>
+
+	    	</div>	    
+	  	</div>
+		</div>
+	</div>
+</header>
+<body>
+<!-- Modal -->
+	<div class="container">
+		
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLongTitle">Sobre</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<p>Esse trabalho tem como intuito desenvolver uma estação meteorológica de baixo custo, dispobilizando dados atualizados sobre o clima no campus Unidade-II UFGD</p>		
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>						
+</body>		
+	<script src="https://unpkg.com/ionicons@4.5.0/dist/ionicons.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+	
+	<!--DataTable js-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script>
+
+</html>
